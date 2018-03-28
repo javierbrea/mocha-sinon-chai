@@ -1,0 +1,9 @@
+verbose: false
+instrumentation:
+    root: .
+    extensions:
+        - .js
+    include-all-sources: yes
+    baseline-file: ./.coverage/coverage-baseline.json
+reporting:
+    dir: ./.coverage
