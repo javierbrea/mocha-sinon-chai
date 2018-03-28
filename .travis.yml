@@ -11,6 +11,8 @@ cache:
 addons:
   sonarcloud:
     organization: "javierbrea"
+    token:
+      secure: "$SONAR_TOKEN"
     branches:
       - master
 
