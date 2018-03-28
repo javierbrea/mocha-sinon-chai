@@ -4,6 +4,8 @@ Wrapper for [Mocha][mocha-url], [Sinon][sinon-url], [Chai][chai-url], [sinon-cha
 
 Use this package to implement test runner, assertions, spies, mocks and stubs importing an unique dependency, and avoid using global variables in your tests.
 
+[![Build status][travisci-image]][travisci-url]
+
 ---
 
 ## Why
@@ -41,3 +43,6 @@ test.describe('mocha-sinon-chai', () => {
 [sinon-chai-url]: https://www.npmjs.com/package/sinon-chai
 [dirty-chai-url]: https://www.npmjs.com/package/dirty-chai
 [standardjs-url]: https://standardjs.com/
+
+[travisci-image]: https://travis-ci.org/javierbrea/mocha-sinon-chai.svg?branch=master
+[travisci-url]: https://travis-ci.org/javierbrea/mocha-sinon-chai
