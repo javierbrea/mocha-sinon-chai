@@ -8,7 +8,7 @@ Use this package to implement test runner, assertions, spies, mocks and stubs im
 
 [![Node version][node-version-image]][node-version-url] [![NPM version][npm-image]][npm-url] [![NPM dependencies][npm-dependencies-image]][npm-dependencies-url]
 
-[![NPM downloads][npm-downloads-image]][npm-downloads-url][![License][license-image]][license-url]
+[![NPM downloads][npm-downloads-image]][npm-downloads-url] [![License][license-image]][license-url]
 
 ---
 
@@ -25,7 +25,7 @@ const test = require('mocha-sinon-chai')
 
 test.describe('mocha-sinon-chai', () => {
   test.it('should return mocha globals', () => {
-  	test.expect(test.after).to.not.be.undefined()
+    test.expect(test.after).to.not.be.undefined()
     test.expect(test.afterEach).to.not.be.undefined()
     test.expect(test.before).to.not.be.undefined()
     test.expect(test.beforeEach).to.not.be.undefined()
