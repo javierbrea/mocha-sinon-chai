@@ -31,14 +31,14 @@ test.describe('index', () => {
     test.expect(test.describe).to.deep.equal(describe)
   })
 
-  test.it('should return mocha "expect" method', () => {
-    test.expect(test.expect).to.not.be.undefined()
-    test.expect(test.expect).to.deep.equal(chai.expect)
-  })
-
   test.it('should return mocha "it" method', () => {
     test.expect(test.it).to.not.be.undefined()
     test.expect(test.it).to.deep.equal(it)
+  })
+
+  test.it('should return chai "expect" method', () => {
+    test.expect(test.expect).to.not.be.undefined()
+    test.expect(test.expect).to.deep.equal(chai.expect)
   })
 
   test.it('should return sinon', () => {

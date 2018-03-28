@@ -15,7 +15,6 @@ addons:
       secure: "$SONAR_TOKEN"
     branches:
       - master
-      - first-release
 
 script:
   - npm run standard

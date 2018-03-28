@@ -4,7 +4,11 @@ Wrapper for [Mocha][mocha-url], [Sinon][sinon-url], [Chai][chai-url], [sinon-cha
 
 Use this package to implement test runner, assertions, spies, mocks and stubs importing an unique dependency, and avoid using global variables in your tests.
 
-[![Build status][travisci-image]][travisci-url]
+[![Build status][travisci-image]][travisci-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Quality Gate][quality-gate-image]][quality-gate-url] [![js-standard-style][standard-image]][standard-url]
+
+[![Node version][node-version-image]][node-version-url] [![NPM version][npm-image]][npm-url] [![NPM dependencies][npm-dependencies-image]][npm-dependencies-url]
+
+[![NPM downloads][npm-downloads-image]][npm-downloads-url][![License][license-image]][license-url]
 
 ---
 
@@ -26,11 +30,14 @@ test.describe('mocha-sinon-chai', () => {
     test.expect(test.before).to.not.be.undefined()
     test.expect(test.beforeEach).to.not.be.undefined()
     test.expect(test.describe).to.not.be.undefined()
-    test.expect(test.expect).to.not.be.undefined()
     test.expect(test.it).to.not.be.undefined()
   })
 
-  test.it('should return sinon object', () => {
+  test.it('should return chai expect', () => {
+    test.expect(test.expect).to.not.be.undefined()
+  })
+
+  test.it('should return sinon', () => {
     test.expect(test.sinon).to.not.be.undefined()
   })
 })
@@ -44,5 +51,21 @@ test.describe('mocha-sinon-chai', () => {
 [dirty-chai-url]: https://www.npmjs.com/package/dirty-chai
 [standardjs-url]: https://standardjs.com/
 
+[coveralls-image]: https://coveralls.io/repos/github/javierbrea/mocha-sinon-chai/badge.svg
+[coveralls-url]: https://coveralls.io/github/javierbrea/mocha-sinon-chai
+[license-image]: https://img.shields.io/npm/l/mocha-sinon-chai.svg
+[license-url]: https://github.com/javierbrea/mocha-sinon-chai/blob/master/LICENSE
+[node-version-image]: https://img.shields.io/node/v/mocha-sinon-chai.svg
+[node-version-url]: https://github.com/javierbrea/mocha-sinon-chai/blob/master/package.json
+[npm-image]: https://img.shields.io/npm/v/mocha-sinon-chai.svg
+[npm-url]: https://www.npmjs.com/package/mocha-sinon-chai
+[npm-downloads-image]: https://img.shields.io/npm/dm/mocha-sinon-chai.svg
+[npm-downloads-url]: https://www.npmjs.com/package/mocha-sinon-chai
+[npm-dependencies-image]: https://img.shields.io/david/javierbrea/mocha-sinon-chai.svg
+[npm-dependencies-url]: https://david-dm.org/javierbrea/mocha-sinon-chai
 [travisci-image]: https://travis-ci.org/javierbrea/mocha-sinon-chai.svg?branch=master
 [travisci-url]: https://travis-ci.org/javierbrea/mocha-sinon-chai
+[quality-gate-image]: https://sonarcloud.io/api/badges/gate?key=mocha-sinon-chai
+[quality-gate-url]: https://sonarcloud.io/dashboard/index/mocha-sinon-chai
+[standard-image]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg
+[standard-url]: http://standardjs.com/
