@@ -14,6 +14,7 @@
     "coverage"
   ],
   "scripts": {
+    "coveralls": "cat ./.coverage/lcov.info | ./node_modules/.bin/coveralls",
     "standard": "standard",
     "test": "./node_modules/istanbul/lib/cli.js cover ./node_modules/.bin/_mocha -- --recursive test"
   },
@@ -25,6 +26,7 @@
     "sinon-chai": "2.14.0"
   },
   "devDependencies": {
+    "coveralls": "3.0.0",
     "istanbul": "0.4.5",
     "standard": "10.0.3"
   },
