@@ -17,7 +17,7 @@ test.describe('_mocha binary', () => {
     mocks.require.disable()
   })
 
-  test.it('should find and require the original _mocha binary file ', () => {
+  test.it('should find and require the original _mocha binary file from "node_modules/.bin" folder', () => {
     require('../../../lib/bin/_mocha')
     return test.expect(mocks.require.test(originalBinRegex)).to.equal(true)
   })
