@@ -44,6 +44,30 @@ test.describe('mocha-sinon-chai', () => {
 
 ```
 
+## Runner
+
+Add the next script to your `package.json` file:
+
+```json
+{
+  "scripts": {
+    "test": "mocha-sinon-chai -- --recursive test"
+  }
+}
+```
+
+Or use directly the provided proxies for istanbul and mocha:
+
+```json
+{
+  "scripts": {`
+    "test": "msc-istanbul cover msc-mocha -- --recursive test"
+  }
+}
+```
+
+> This "proxies" are provided because in `npm install`, binaries from dependencies of dependencies are not added to `.bin` folder as symlinks.
+
 [mocha-url]: https://mochajs.org
 [sinon-url]: http://sinonjs.org/
 [chai-url]: http://www.chaijs.com
