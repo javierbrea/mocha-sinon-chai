@@ -79,12 +79,13 @@ Now, when test command is executed, all test files in `test/` folder and subdire
 npm test
 ```
 
-For better control, you can use directly the provided proxies for istanbul and mocha:
+For better control, you can use directly the provided proxies for "istanbul", "mocha" and "_mocha" original binaries:
 
 ```json
 {
   "scripts": {
-    "test": "msc-istanbul cover msc-mocha -- --recursive test"
+    "test": "msc-mocha -- --recursive test",
+    "coverage": "msc-istanbul cover msc_mocha -- --recursive test"
   }
 }
 ```
