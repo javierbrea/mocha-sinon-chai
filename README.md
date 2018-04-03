@@ -56,11 +56,31 @@ Add the next script to your `package.json` file:
 }
 ```
 
-Or use directly the provided proxies for istanbul and mocha:
+Add an `.istanbul.yml` file to your project root, as in this example:
+
+```yml
+verbose: false
+instrumentation:
+    root: .
+    extensions:
+        - .js
+    include-all-sources: yes
+    baseline-file: ./.coverage/coverage-baseline.json
+reporting:
+    dir: ./.coverage
+```
+
+Now, when test command is executed, all test files in `test/` folder and subdirectories will be executed, and `istanbul` coverage will be created at `.coverage` folder:
+
+```shell
+npm test
+```
+
+For better control, you can use directly the provided proxies for istanbul and mocha:
 
 ```json
 {
-  "scripts": {`
+  "scripts": {
     "test": "msc-istanbul cover msc-mocha -- --recursive test"
   }
 }
