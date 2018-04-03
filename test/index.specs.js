@@ -1,9 +1,8 @@
-/* global describe, it, before, beforeEach, after, afterEach */
-
-const test = require('../index')
 
 const sinon = require('sinon')
 const chai = require('chai')
+
+const test = require('../index')
 
 test.describe('index', () => {
   test.it('should return mocha "after" method', () => {

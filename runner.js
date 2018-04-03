@@ -1,2 +1,2 @@
 
-module.exports = require('./lib/run')
+module.exports = require('./lib/runner')
