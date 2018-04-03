@@ -2,7 +2,10 @@
 
 Wrapper for [Mocha][mocha-url], [Sinon][sinon-url], [Chai][chai-url], [sinon-chai][sinon-chai-url] and [dirty-chai][dirty-chai-url]
 
+It also includes [Istanbul][istanbul-url] as a dependency, and provides "proxy" `bin` files that allow to launch tests and generate coverages.
+
 Use this package to implement test runner, assertions, spies, mocks and stubs importing an unique dependency, and avoid using global variables in your tests.
+
 
 [![Build status][travisci-image]][travisci-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Quality Gate][quality-gate-image]][quality-gate-url] [![js-standard-style][standard-image]][standard-url]
 
@@ -44,7 +47,7 @@ test.describe('mocha-sinon-chai', () => {
 
 ```
 
-## Runner
+## Tests runner, and coverage
 
 Add the next script to your `package.json` file:
 
@@ -88,6 +91,7 @@ For better control, you can use directly the provided proxies for istanbul and m
 
 > This "proxies" are provided because in `npm install`, binaries from dependencies of dependencies are not added to `.bin` folder as symlinks.
 
+[istanbul-url]: https://istanbul.js.org/
 [mocha-url]: https://mochajs.org
 [sinon-url]: http://sinonjs.org/
 [chai-url]: http://www.chaijs.com
