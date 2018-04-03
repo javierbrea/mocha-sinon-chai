@@ -16,7 +16,7 @@
   "scripts": {
     "coveralls": "cat ./.coverage/lcov.info | ./node_modules/.bin/coveralls",
     "standard": "standard",
-    "test": "istanbul cover mocha -- --recursive test"
+    "test": "./bin/mocha-sinon-chai -- --recursive test"
   },
   "bin": {
     "msc-mocha": "./bin/msc-mocha",
