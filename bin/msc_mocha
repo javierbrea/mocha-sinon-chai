@@ -1,4 +1,4 @@
 #!/usr/bin/env node
 'use strict'
 
-require('../lib/bin/mocha')
+require('../lib/bin/_mocha')
