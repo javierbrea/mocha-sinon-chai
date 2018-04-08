@@ -1,9 +1,10 @@
 {
   "name": "mocha-sinon-chai",
-  "version": "2.0.0-alpha.22",
-  "description": "Wrapper for Mocha, Sinon and Chai. Avoid globals in tests",
+  "version": "2.0.0",
+  "description": "Wrapper for Mocha, Sinon and Chai. Wrapper cli for istanbul and mocha. Avoid globals in tests",
   "main": "index.js",
   "keywords": [
+    "istanbul",
     "mocha",
     "sinon",
     "chai",
@@ -16,7 +17,7 @@
   "scripts": {
     "coveralls": "cat ./.coverage/lcov.info | ./node_modules/.bin/coveralls",
     "standard": "standard",
-    "test": "./bin/mocha-sinon-chai --mocha --recursive test"
+    "test": "./bin/mocha-sinon-chai --istanbul --print=detail --mocha --recursive test"
   },
   "bin": {
     "msc_mocha": "./bin/msc_mocha",

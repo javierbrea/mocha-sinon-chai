@@ -5,6 +5,16 @@ const Require = function () {
   let orig = Module._load
   let loaded = []
 
+  const cleanRequireCache = function () {
+    Object.keys(require.cache).forEach((key) => {
+      delete require.cache[key]
+    })
+  }
+
+  const reset = function () {
+    loaded = []
+  }
+
   const regexsTest = function (regexs, strings) {
     let i
     let z
@@ -24,6 +34,7 @@ const Require = function () {
   }
 
   const disable = function () {
+    cleanRequireCache()
     reset()
     Module._load = orig
   }
@@ -37,10 +48,6 @@ const Require = function () {
         return orig.apply(this, arguments)
       }
     }
-  }
-
-  const reset = function () {
-    loaded = []
   }
 
   const check = function (name) {

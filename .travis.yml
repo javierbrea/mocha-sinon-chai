@@ -15,6 +15,7 @@ addons:
       secure: "$SONAR_TOKEN"
     branches:
       - master
+      - istanbul-mocha-runner
 
 script:
   - npm run standard
