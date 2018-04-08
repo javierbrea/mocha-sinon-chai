@@ -2,7 +2,10 @@
 
 Wrapper for [Mocha][mocha-url], [Sinon][sinon-url], [Chai][chai-url], [sinon-chai][sinon-chai-url] and [dirty-chai][dirty-chai-url]
 
+It also includes [Istanbul][istanbul-url] as a dependency, and provides "proxy" `bin` files that allow to launch tests and generate coverages.
+
 Use this package to implement test runner, assertions, spies, mocks and stubs importing an unique dependency, and avoid using global variables in your tests.
+
 
 [![Build status][travisci-image]][travisci-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Quality Gate][quality-gate-image]][quality-gate-url] [![js-standard-style][standard-image]][standard-url]
 
@@ -11,12 +14,6 @@ Use this package to implement test runner, assertions, spies, mocks and stubs im
 [![NPM downloads][npm-downloads-image]][npm-downloads-url] [![License][license-image]][license-url]
 
 ---
-
-## Why
-
-* Because Mocha works with globals.
-* Because I used to import all these dependencies in all my test files.
-* Because now, my tests are compliant with [standardjs][standardjs-url].
 
 ## Usage
 
@@ -44,6 +41,69 @@ test.describe('mocha-sinon-chai', () => {
 
 ```
 
+## Tests runner, and coverage
+
+Binary "proxies" for "istanbul cover" and "mocha" are provided. This is because in `npm install`, binaries from dependencies of dependencies sometimes are not added to `.bin` folder as symlinks.
+
+Add the next script to your `package.json` file:
+
+```json
+{
+  "scripts": {
+    "test": "mocha-sinon-chai"
+  },
+  "devDependencies" : {
+    "mocha-sinon-chai": "2.0.0"
+  }
+}
+```
+
+```shell
+npm test -- --mocha my-test-folder
+```
+
+All received parameters preceded by `--istanbul` will be passed to `istanbul cover` command, and all parameters preceded by `--mocha` will be passed to `_mocha` command:
+
+```shell
+npm test -- --istanbul --include-all-sources --print=detail --mocha --recursive my-test-folder
+# same as "./node_modules/.bin/istanbul --include-all-sources --print=detail cover ./node_modules/.bin/_mocha -- --recursive my-test/folder"
+```
+
+You can read more about [istanbul](https://github.com/gotwarlost/istanbul#configuring) or [mocha](https://mochajs.org/#usage) configurations in their own documentation pages.
+
+Add your test custom configuration to your `package.json` file:
+```json
+{
+  "scripts": {
+    "test": "mocha-sinon-chai --istanbul --include-all-sources --print=detail --verbose --mocha --recursive my-test-folder"
+  }
+}
+```
+
+### Configuration using files
+
+Configuration file `.istanbul.yml` in your package root is supported as well.
+
+### Custom execution
+
+Proxies for "istanbul", "mocha" and "_mocha" original binaries are available too:
+
+```json
+{
+  "scripts": {
+    "test": "msc-mocha -- --recursive test",
+    "coverage": "msc-istanbul --include-all-sources --print=detail cover msc_mocha -- --recursive test"
+  }
+}
+```
+
+## Why
+
+* Because Mocha works with globals.
+* Because I used to import all these dependencies in all my test files.
+* Because now, my tests are compliant with [standardjs][standardjs-url].
+
+[istanbul-url]: https://istanbul.js.org/
 [mocha-url]: https://mochajs.org
 [sinon-url]: http://sinonjs.org/
 [chai-url]: http://www.chaijs.com

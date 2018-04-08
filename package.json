@@ -1,9 +1,10 @@
 {
   "name": "mocha-sinon-chai",
-  "version": "1.1.0",
-  "description": "Wrapper for Mocha, Sinon and Chai. Avoid globals in tests",
+  "version": "2.0.0",
+  "description": "Wrapper for Mocha, Sinon and Chai. Wrapper cli for istanbul and mocha. Avoid globals in tests",
   "main": "index.js",
   "keywords": [
+    "istanbul",
     "mocha",
     "sinon",
     "chai",
@@ -16,18 +17,24 @@
   "scripts": {
     "coveralls": "cat ./.coverage/lcov.info | ./node_modules/.bin/coveralls",
     "standard": "standard",
-    "test": "./node_modules/istanbul/lib/cli.js cover ./node_modules/.bin/_mocha -- --recursive test"
+    "test": "./bin/mocha-sinon-chai --istanbul --print=detail --mocha --recursive test"
+  },
+  "bin": {
+    "msc_mocha": "./bin/msc_mocha",
+    "msc-mocha": "./bin/msc-mocha",
+    "msc-istanbul": "./bin/msc-istanbul",
+    "mocha-sinon-chai": "./bin/mocha-sinon-chai"
   },
   "dependencies": {
     "chai": "4.1.2",
     "dirty-chai": "2.0.1",
     "mocha": "5.0.5",
     "sinon": "4.4.9",
-    "sinon-chai": "3.0.0"
+    "sinon-chai": "3.0.0",
+    "istanbul": "0.4.5"
   },
   "devDependencies": {
     "coveralls": "3.0.0",
-    "istanbul": "0.4.5",
     "standard": "11.0.1"
   },
   "engines": {
