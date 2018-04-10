@@ -1,10 +1,8 @@
 
 const test = require('../../../index')
 const mocks = require('../../mocks')
-const paths = require('../../../lib/paths')
 
 test.describe('istanbul binary', () => {
-  const originalBinRegex = /\S*node_modules\/\.bin\/istanbul$/
   const binPath = '../../../lib/bin/istanbul'
   let istanbul
   let istanbulStub

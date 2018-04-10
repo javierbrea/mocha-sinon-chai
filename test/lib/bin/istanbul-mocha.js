@@ -45,4 +45,11 @@ test.describe('istanbul-mocha binary', () => {
       test.expect(process.exit).to.have.been.calledWith(errorCode)
     ])
   })
+
+  test.it('should exit process with code 1 if received error does not have code', () => {
+    const error = new Error()
+    promiseMock.rejects(error)
+    require(fileToTest)
+    return test.expect(process.exit).to.have.been.calledWith(1)
+  })
 })

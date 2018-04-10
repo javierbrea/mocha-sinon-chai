@@ -45,6 +45,21 @@ test.describe('runner', () => {
         })
     })
 
+    test.it('should reject the promise with an error containing the code if the process ends with a code different of 0', () => {
+      const errorCode = 3
+      childProcessMock.returns(3)
+      return runner.run()
+        .then(() => {
+          return Promise.reject(new Error())
+        })
+        .catch(err => {
+          return Promise.all([
+            test.expect(err.message).to.include('Error'),
+            test.expect(err.code).to.equal(errorCode)
+          ])
+        })
+    })
+
     test.it('should accept as argument an array with parameters, or an string with whitespaces as parameters separator', () => {
       const fooParams = [
         'param1',
