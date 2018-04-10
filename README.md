@@ -91,8 +91,18 @@ Proxies for "istanbul", "mocha" and "_mocha" original binaries are available too
 ```json
 {
   "scripts": {
-    "test": "msc-mocha -- --recursive test",
+    "test": "msc-mocha --recursive test",
     "coverage": "msc-istanbul --include-all-sources --print=detail cover msc_mocha -- --recursive test"
+  }
+}
+```
+
+> Note: In Windows environments, you can't pass a binary to istanbul. The "coverage" script in the previous example should be:
+
+```json
+{
+  "scripts": {
+    "coverage": "msc-istanbul --include-all-sources --print=detail cover node_modules/mocha-sinon-chai/bin/msc_mocha -- --recursive test"
   }
 }
 ```

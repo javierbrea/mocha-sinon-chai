@@ -1,47 +1,29 @@
 
-const fs = require('fs')
-
 const test = require('../../../index')
 const mocks = require('../../mocks')
 
-const testBinRequire = function (binName, binPath) {
+const testBinRequire = function (binName, binPath, requireRegex) {
   test.describe(binName + ' binary', () => {
-    const originalBinRegex = new RegExp('\\S*node_modules\\/\\.bin\\/' + binName + '$')
-    let fsExistsStub
+    const originalFileRegex = new RegExp(requireRegex)
 
     test.beforeEach(() => {
       mocks.require.enable({
         avoidLoad: [
-          originalBinRegex
+          originalFileRegex
         ]
       })
-      fsExistsStub = test.sinon.stub(fs, 'existsSync').returns(true)
     })
 
     test.afterEach(() => {
       mocks.require.disable()
-      fs.existsSync.restore()
     })
 
-    test.it('should find and require the original ' + binName + ' binary file from "node_modules/.bin" folder', () => {
+    test.it('should require the original ' + binName + ' javascript file', () => {
       require(binPath)
-      return test.expect(mocks.require.test(originalBinRegex)).to.equal(true)
-    })
-
-    test.it('should throw an error if the ' + binName + ' binary file is not found', (done) => {
-      fsExistsStub.returns(false)
-      let error
-      try {
-        require(binPath)
-      } catch (err) {
-        error = err
-      }
-      test.expect(error).to.be.an('error')
-      test.expect(error.message).to.have.string('bin not found')
-      done()
+      return test.expect(mocks.require.test(originalFileRegex)).to.equal(true)
     })
   })
 }
 
-testBinRequire('_mocha', '../../../lib/bin/_mocha')
-testBinRequire('mocha', '../../../lib/bin/mocha')
+testBinRequire('_mocha', '../../../lib/bin/_mocha', 'mocha\\/bin\\/_mocha')
+testBinRequire('mocha', '../../../lib/bin/mocha', 'mocha\\/bin\\/mocha')

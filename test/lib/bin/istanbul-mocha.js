@@ -3,26 +3,53 @@ const test = require('../../../index')
 const mocks = require('../../mocks')
 
 test.describe('istanbul-mocha binary', () => {
+  const fileToTest = '../../../lib/bin/istanbul-mocha'
   let runner
+  let promiseMock
   let runnerStub
 
-  test.before(() => {
+  test.beforeEach(() => {
     mocks.require.enable()
+    promiseMock = new mocks.Promise()
     runner = require('../../../lib/runner')
-    runnerStub = test.sinon.stub(runner, 'run')
+    runnerStub = test.sinon.stub(runner, 'run').returns(promiseMock)
+    test.sinon.stub(process, 'exit')
+    test.sinon.spy(console, 'log')
   })
 
-  test.after(() => {
+  test.afterEach(() => {
     mocks.require.disable()
     runner.run.restore()
+    console.log.restore()
+    process.exit.restore()
   })
 
-  test.it('should call to the runner.run function passing to it the process parameters, except first and second', (done) => {
+  test.it('should call to the runner.run function passing to it the process parameters, except first and second', () => {
     const originalArgs = process.argv
     process.argv = ['fooParam', 'fooParam2', 'fooParam3']
-    require('../../../lib/bin/istanbul-mocha')
+    promiseMock.resolves()
+    require(fileToTest)
     test.expect(runnerStub).to.have.been.calledWith(['fooParam3'])
     process.argv = originalArgs
-    done()
+  })
+
+  test.it('should log error and exit process with the received error code if the test runner fails', () => {
+    const errorCode = 3
+    const errorMessage = 'Foo error message'
+    const error = new Error(errorMessage)
+    error.code = errorCode
+    promiseMock.rejects(error)
+    require(fileToTest)
+    return Promise.all([
+      test.expect(console.log).to.have.been.calledWith(errorMessage),
+      test.expect(process.exit).to.have.been.calledWith(errorCode)
+    ])
+  })
+
+  test.it('should exit process with code 1 if received error does not have code', () => {
+    const error = new Error()
+    promiseMock.rejects(error)
+    require(fileToTest)
+    return test.expect(process.exit).to.have.been.calledWith(1)
   })
 })
