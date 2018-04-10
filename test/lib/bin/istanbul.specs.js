@@ -3,28 +3,21 @@ const test = require('../../../index')
 const mocks = require('../../mocks')
 const paths = require('../../../lib/paths')
 
-const istanbulBinPath = paths.findBin('istanbul')
-
 test.describe('istanbul binary', () => {
   const originalBinRegex = /\S*node_modules\/\.bin\/istanbul$/
   const binPath = '../../../lib/bin/istanbul'
-  let istanbulBin
+  let istanbul
   let istanbulStub
 
   test.beforeEach(() => {
     mocks.require.enable()
-    istanbulBin = require(istanbulBinPath)
-    istanbulStub = test.sinon.stub(istanbulBin, 'runToCompletion')
+    istanbul = require('istanbul/lib/cli')
+    istanbulStub = test.sinon.stub(istanbul, 'runToCompletion')
   })
 
   test.afterEach(() => {
-    istanbulBin.runToCompletion.restore()
+    istanbul.runToCompletion.restore()
     mocks.require.disable()
-  })
-
-  test.it('should find and require the original istanbul binary file from "node_modules/.bin" folder', () => {
-    require(binPath)
-    return test.expect(mocks.require.test(originalBinRegex)).to.equal(true)
   })
 
   test.it('should call to the istanbul runToCompletion function', () => {

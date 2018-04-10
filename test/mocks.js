@@ -63,6 +63,42 @@ const Require = function () {
   }
 }
 
+const ChildProcessMock = function () {
+  let codeToReturn = 0
+  const on = function (eventName, callBack) {
+    callBack(codeToReturn)
+  }
+  const returns = function (code) {
+    codeToReturn = code
+  }
+  return {
+    on: on,
+    returns: returns
+  }
+}
+
+const PromiseMock = function () {
+  let errorToReject
+  const catcher = function (callBack) {
+    if (errorToReject) {
+      callBack(errorToReject)
+    }
+  }
+  const rejects = function (error) {
+    errorToReject = error
+  }
+  const resolves = function () {
+    errorToReject = null
+  }
+  return {
+    catch: catcher,
+    rejects: rejects,
+    resolves: resolves
+  }
+}
+
 module.exports = {
-  require: new Require()
+  require: new Require(),
+  ChildProcess: ChildProcessMock,
+  Promise: PromiseMock
 }

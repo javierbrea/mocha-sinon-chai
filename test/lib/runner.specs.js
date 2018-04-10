@@ -3,27 +3,21 @@ const path = require('path')
 const childProcess = require('child_process')
 
 const test = require('../../index')
+const mocks = require('../mocks')
 
 const runner = require('../../lib/runner')
 
-const absoluteBinPath = function (fileName) {
-  return path.resolve(__dirname, '..', '..', 'node_modules', '.bin', fileName)
-}
-
 test.describe('runner', () => {
   let childProcessStub
+  let childProcessMock
 
-  const getChildProcessArgument = function (callIndex) {
-    callIndex = callIndex || 0
-    return childProcessStub.getCall(0).args[0]
-  }
-
-  const expectChildProcessCallToHaveString = function (str) {
-    test.expect(getChildProcessArgument()).to.have.string(str)
+  const getChildProcessArgument = function (callIndex, argIndex) {
+    return childProcessStub.getCall(callIndex || 0).args[argIndex || 0]
   }
 
   test.beforeEach(() => {
-    childProcessStub = test.sinon.stub(childProcess, 'execSync')
+    childProcessMock = new mocks.ChildProcess()
+    childProcessStub = test.sinon.stub(childProcess, 'fork').returns(childProcessMock)
   })
 
   test.afterEach(() => {
@@ -31,20 +25,24 @@ test.describe('runner', () => {
   })
 
   test.describe('run method', () => {
-    test.it('should open an "istanbul cover mocha" child process with they binary absolute paths', () => {
-      const mochaPath = absoluteBinPath('_mocha')
-      const istanbulPath = absoluteBinPath('istanbul')
-      let stubArgument
+    test.it('should run an "istanbul cover _mocha" child process fork using absolute paths', () => {
+      const istanbulPath = path.resolve(__dirname, '..', '..', 'node_modules', 'istanbul', 'lib', 'cli.js')
+      const mochaPath = path.resolve(__dirname, '..', '..', 'node_modules', 'mocha', 'bin', '_mocha')
 
-      runner.run()
-      stubArgument = getChildProcessArgument()
-      test.expect(stubArgument).to.have.string(mochaPath)
-      test.expect(stubArgument).to.have.string(istanbulPath)
+      return runner.run()
+        .then(() => {
+          return Promise.all([
+            test.expect(getChildProcessArgument()).to.equal(istanbulPath),
+            test.expect(getChildProcessArgument(0, 1)[1]).to.equal(mochaPath)
+          ])
+        })
     })
 
     test.it('should open the child process with the current cwd as an option', () => {
-      runner.run()
-      test.expect(childProcessStub.getCall(0).args[1].cwd).to.equal(process.cwd())
+      return runner.run()
+        .then(() => {
+          return test.expect(getChildProcessArgument(0, 2).cwd).to.equal(process.cwd())
+        })
     })
 
     test.it('should accept as argument an array with parameters, or an string with whitespaces as parameters separator', () => {
@@ -52,56 +50,87 @@ test.describe('runner', () => {
         'param1',
         'param2'
       ]
-      runner.run(fooParams)
-      runner.run(fooParams.join(' '))
-      test.expect(childProcessStub.getCall(0).args).to.deep.equal(childProcessStub.getCall(1).args)
+      return runner.run(fooParams)
+        .then(() => {
+          return runner.run(fooParams.join(' '))
+            .then(() => {
+              return test.expect(childProcessStub.getCall(0).args).to.deep.equal(childProcessStub.getCall(1).args)
+            })
+        })
     })
 
     test.it('should pass to istanbul all parameters preceded by the "--istanbul" parameter', () => {
-      let istanbulParameters = '--fooParam2 --fooParam3'
-      runner.run('--fooParam1 --istanbul ' + istanbulParameters + ' --mocha --fooParam4')
-      expectChildProcessCallToHaveString('/istanbul ' + istanbulParameters + ' cover')
+      let istanbulParameters = ['--fooParam2', '--fooParam3']
+      return runner.run('--fooParam1 --istanbul ' + istanbulParameters.join(' ') + ' --mocha --fooParam4')
+        .then(() => {
+          let processArgs = getChildProcessArgument(0, 1)
+          return Promise.all([
+            test.expect(processArgs[0]).to.equal(istanbulParameters[0]),
+            test.expect(processArgs[1]).to.equal(istanbulParameters[1]),
+            test.expect(processArgs[2]).to.equal('cover')
+          ])
+        })
     })
 
     test.it('should not pass any parameter to istanbul if are not specified', () => {
-      runner.run('--mocha --fooParam4')
-      expectChildProcessCallToHaveString('/istanbul cover')
+      return runner.run('--mocha --fooParam4')
+        .then(() => {
+          return test.expect(getChildProcessArgument(0, 1)[0]).to.equal('cover')
+        })
     })
 
     test.it('should add an extra "--" before mocha parameters', () => {
-      let mochaParameters = '--fooMochaParam1 --foo2'
-      runner.run('--mocha ' + mochaParameters)
-      expectChildProcessCallToHaveString('-- ' + mochaParameters)
+      let mochaParameters = ['--fooMochaParam1', '--fooMochaParam2']
+      return runner.run('--mocha ' + mochaParameters.join(' '))
+        .then(() => {
+          let processArgs = getChildProcessArgument(0, 1)
+          return Promise.all([
+            test.expect(processArgs[0]).to.equal('cover'),
+            test.expect(processArgs[2]).to.equal('--'),
+            test.expect(processArgs[3]).to.equal(mochaParameters[0]),
+            test.expect(processArgs[4]).to.equal(mochaParameters[1])
+          ])
+        })
     })
 
     test.it('should not pass any parameter to mocha if are not specified', () => {
-      runner.run('--istanbul --testing --')
-      test.expect(/_mocha$/.test(getChildProcessArgument())).to.equal(true)
+      return runner.run('--istanbul --testing')
+        .then(() => {
+          return test.expect(/_mocha$/.test(getChildProcessArgument(0, 1).pop())).to.equal(true)
+        })
     })
 
     test.it('should pass to mocha all parameters preceded by the "--mocha" parameter', () => {
-      let mochaParameters = '--fooMochaParam1 testing'
-      runner.run('--fooParam1 --mocha ' + mochaParameters + ' --istanbul --fooParam4')
-      expectChildProcessCallToHaveString('/_mocha -- ' + mochaParameters)
-    })
-
-    test.it('should not pass any parameter to istanbul if are not specified', () => {
-      runner.run('--mocha --fooParam4')
-      expectChildProcessCallToHaveString('/istanbul cover')
+      let mochaParameters = ['--fooMochaParam2', '--fooParam3']
+      return runner.run('--istanbul --fooParam1 --mocha ' + mochaParameters.join(' '))
+        .then(() => {
+          let processArgs = getChildProcessArgument(0, 1)
+          return Promise.all([
+            test.expect(processArgs[3]).to.equal('--'),
+            test.expect(processArgs[4]).to.equal(mochaParameters[0]),
+            test.expect(processArgs[5]).to.equal(mochaParameters[1])
+          ])
+        })
     })
 
     test.it('should ignore parameters that are not preceded by "--mocha" or by "--istanbul"', () => {
       let strangeParameter = '--strangeParameter'
-      runner.run(strangeParameter)
-      test.expect(getChildProcessArgument()).to.not.have.string(strangeParameter)
+      return runner.run(strangeParameter)
+        .then(() => {
+          return test.expect(getChildProcessArgument(0, 1).join(' ')).to.not.have.string(strangeParameter)
+        })
     })
 
     test.it('should find the istanbul and mocha parameters and pass it in the correct place, no matter the order they are provided', () => {
       let mochaParams = '--fooMochaParam --fooParam2'
       let istanbulParams = '--fooIstanbulParam --fake'
-      runner.run('strangeParam1 --mocha ' + mochaParams + ' --istanbul ' + istanbulParams)
-      runner.run('wrongParameter2 --istanbul ' + istanbulParams + ' --mocha ' + mochaParams)
-      test.expect(childProcessStub.getCall(0).args).to.deep.equal(childProcessStub.getCall(1).args)
+      return runner.run('strangeParam1 --mocha ' + mochaParams + ' --istanbul ' + istanbulParams)
+        .then(() => {
+          return runner.run('wrongParameter2 --istanbul ' + istanbulParams + ' --mocha ' + mochaParams)
+            .then(() => {
+              return test.expect(childProcessStub.getCall(0).args).to.deep.equal(childProcessStub.getCall(1).args)
+            })
+        })
     })
   })
 })
