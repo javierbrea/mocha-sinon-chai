@@ -97,7 +97,7 @@ Proxies for "istanbul", "mocha" and "_mocha" original binaries are available too
 }
 ```
 
-> Note: In windows environments, you can't pass a binary to istanbul. The "coverage" script in the previous example should be:
+> Note: In Windows environments, you can't pass a binary to istanbul. The "coverage" script in the previous example should be:
 
 ```json
 {
