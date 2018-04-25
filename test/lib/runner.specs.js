@@ -147,5 +147,22 @@ test.describe('runner', () => {
             })
         })
     })
+
+    test.it('should pass all environment variables received in options to the istanbul execution', () => {
+      const envVars = {
+        fooEnvVar1: 'foo value 1',
+        fooEnvVar2: 'foo value 2'
+      }
+      return runner.run('', {
+        env: envVars
+      })
+        .then(() => {
+          const env = getChildProcessArgument(0, 2).env
+          return Promise.all([
+            test.expect(env.fooEnvVar1).to.equal(envVars.fooEnvVar1),
+            test.expect(env.fooEnvVar2).to.equal(envVars.fooEnvVar2)
+          ])
+        })
+    })
   })
 })
