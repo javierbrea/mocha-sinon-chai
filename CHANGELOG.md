@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [2.3.0] - 2018-05-20
 ### Changed
-- Upgrade Mocha version.
+- Upgrade Mocha version. (Waiting to upgrade Sinon until sinon-chai is compatible with Sinon 5)
 
 ### Fixed
 - Fix sonarcloud badge url.
