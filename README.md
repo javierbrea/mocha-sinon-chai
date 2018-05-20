@@ -53,7 +53,7 @@ Add the next script to your `package.json` file:
     "test": "mocha-sinon-chai"
   },
   "devDependencies" : {
-    "mocha-sinon-chai": "2.0.0"
+    "mocha-sinon-chai": "2.3.0"
   }
 }
 ```
@@ -135,7 +135,7 @@ Proxies for "istanbul", "mocha" and "_mocha" original binaries are available too
 [npm-dependencies-url]: https://david-dm.org/javierbrea/mocha-sinon-chai
 [travisci-image]: https://travis-ci.org/javierbrea/mocha-sinon-chai.svg?branch=master
 [travisci-url]: https://travis-ci.org/javierbrea/mocha-sinon-chai
-[quality-gate-image]: https://sonarcloud.io/api/badges/gate?key=mocha-sinon-chai
-[quality-gate-url]: https://sonarcloud.io/dashboard/index/mocha-sinon-chai
+[quality-gate-image]: https://sonarcloud.io/api/project_badges/measure?project=mocha-sinon-chai&metric=alert_status
+[quality-gate-url]: https://sonarcloud.io/dashboard?id=mocha-sinon-chai
 [standard-image]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg
 [standard-url]: http://standardjs.com/

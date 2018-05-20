@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) 
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [unreleased]
+### Added
+### Changed
+### Fixed
+### Removed
+
+## [2.3.0] - 2018-05-20
+### Changed
+- Upgrade Mocha version. (Waiting to upgrade Sinon until sinon-chai is compatible with Sinon 5)
+
+### Fixed
+- Fix sonarcloud badge url.
+
 ## [2.2.0] - 2018-04-25
 ### Added
 - Add option to runner that allows to set custom environment variables.
