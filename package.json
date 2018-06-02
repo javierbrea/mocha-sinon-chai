@@ -1,6 +1,6 @@
 {
   "name": "mocha-sinon-chai",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "description": "Wrapper for Mocha, Sinon and Chai. Wrapper cli for istanbul and mocha. Avoid globals in tests",
   "main": "index.js",
   "keywords": [
@@ -29,21 +29,17 @@
     "chai": "4.1.2",
     "dirty-chai": "2.0.1",
     "mocha": "5.2.0",
-    "sinon": "4.5.0",
-    "sinon-chai": "3.0.0",
+    "sinon": "5.0.10",
+    "sinon-chai": "3.1.0",
     "istanbul": "0.4.5"
   },
   "devDependencies": {
     "coveralls": "3.0.0",
     "standard": "11.0.1"
   },
-  "engines": {
-    "node": "8.11.1",
-    "npm": "5.6.0"
-  },
   "author": {
     "name": "Javier Brea",
-    "url": "http://javierbrea.com"
+    "url": "https://javierbrea.com"
   },
   "license": "MIT",
   "repository": "https://github.com/javierbrea/mocha-sinon-chai"

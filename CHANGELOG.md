@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 ### Removed
 
+## [2.4.0] - 2018-06-02
+### Changed
+- Upgrade sinon and sinon-chai versions.
+
 ## [2.3.0] - 2018-05-20
 ### Changed
 - Upgrade Mocha version. (Waiting to upgrade Sinon until sinon-chai is compatible with Sinon 5)
