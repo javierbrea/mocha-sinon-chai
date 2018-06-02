@@ -9,9 +9,7 @@ Use this package to implement test runner, assertions, spies, mocks and stubs im
 
 [![Build status][travisci-image]][travisci-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Quality Gate][quality-gate-image]][quality-gate-url] [![js-standard-style][standard-image]][standard-url]
 
-[![Node version][node-version-image]][node-version-url] [![NPM version][npm-image]][npm-url] [![NPM dependencies][npm-dependencies-image]][npm-dependencies-url]
-
-[![NPM downloads][npm-downloads-image]][npm-downloads-url] [![License][license-image]][license-url]
+[![NPM dependencies][npm-dependencies-image]][npm-dependencies-url] [![NPM downloads][npm-downloads-image]][npm-downloads-url] [![License][license-image]][license-url]
 
 ---
 
@@ -125,10 +123,6 @@ Proxies for "istanbul", "mocha" and "_mocha" original binaries are available too
 [coveralls-url]: https://coveralls.io/github/javierbrea/mocha-sinon-chai
 [license-image]: https://img.shields.io/npm/l/mocha-sinon-chai.svg
 [license-url]: https://github.com/javierbrea/mocha-sinon-chai/blob/master/LICENSE
-[node-version-image]: https://img.shields.io/node/v/mocha-sinon-chai.svg
-[node-version-url]: https://github.com/javierbrea/mocha-sinon-chai/blob/master/package.json
-[npm-image]: https://img.shields.io/npm/v/mocha-sinon-chai.svg
-[npm-url]: https://www.npmjs.com/package/mocha-sinon-chai
 [npm-downloads-image]: https://img.shields.io/npm/dm/mocha-sinon-chai.svg
 [npm-downloads-url]: https://www.npmjs.com/package/mocha-sinon-chai
 [npm-dependencies-image]: https://img.shields.io/david/javierbrea/mocha-sinon-chai.svg
