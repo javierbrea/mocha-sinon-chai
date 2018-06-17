@@ -32,6 +32,10 @@ test.describe('mocha-sinon-chai', () => {
     test.expect(test.expect).to.not.be.undefined()
   })
 
+  test.it('should return chai assert', () => {
+    test.expect(test.assert).to.not.be.undefined()
+  })
+
   test.it('should return sinon', () => {
     test.expect(test.sinon).to.not.be.undefined()
   })
