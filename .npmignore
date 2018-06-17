@@ -1,0 +1,12 @@
+.coverage
+.npmrc
+.scannerwork
+node_modules
+npm-debug.log
+package-lock.json
+.test
+/test
+.istanbul.yml
+.gitignore
+.travis.yml
+sonar-project.properties
