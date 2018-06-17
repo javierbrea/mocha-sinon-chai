@@ -17,6 +17,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - Upgrade sinon version to 6.0.0.
 
+### Fixed
+- Avoid npm distribution of unneeded files.
+
 ## [2.4.0] - 2018-06-02
 ### Changed
 - Upgrade sinon and sinon-chai versions.
