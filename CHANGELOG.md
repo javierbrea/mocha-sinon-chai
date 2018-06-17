@@ -10,6 +10,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 ### Removed
 
+## [2.5.0] - 2018-06-17
+### Added
+- Expose chai "assert" method
+
+### Changed
+- Upgrade sinon version to 6.0.0.
+
 ## [2.4.0] - 2018-06-02
 ### Changed
 - Upgrade sinon and sinon-chai versions.

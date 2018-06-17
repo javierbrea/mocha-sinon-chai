@@ -16,5 +16,6 @@ module.exports = {
   describe: describe,
   it: it,
   expect: chai.expect,
+  assert: chai.assert,
   sinon: sinon
 }

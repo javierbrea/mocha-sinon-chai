@@ -34,6 +34,11 @@ test.describe('index', () => {
     test.expect(test.expect).to.deep.equal(chai.expect)
   })
 
+  test.it('should return chai "assert" method', () => {
+    test.expect(test.assert).to.not.be.undefined()
+    test.expect(test.assert).to.deep.equal(chai.assert)
+  })
+
   test.it('should return sinon', () => {
     test.expect(test.sinon).to.not.be.undefined()
     test.expect(test.sinon).to.deep.equal(sinon)
