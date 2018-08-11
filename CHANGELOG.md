@@ -14,6 +14,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - Upgrade sinon version to 6.1.5.
 
+### Added
+- Add community standards.
+
 ## [2.6.0] - 2018-06-18
 ### Changed
 - Upgrade sinon-chai version to version 3.2.0, which provides support for Sinon v6.x.
