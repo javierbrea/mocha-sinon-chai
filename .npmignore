@@ -6,6 +6,7 @@ npm-debug.log
 package-lock.json
 .test
 /test
+/.github
 .istanbul.yml
 .gitignore
 .travis.yml
