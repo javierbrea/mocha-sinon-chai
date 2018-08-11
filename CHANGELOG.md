@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 ### Removed
 
+## [3.0.0] - 2018-08-11
+### Changed
+- Upgrade istanbul version.
+
 ## [2.8.0] - 2018-08-11
 ### Added
 - Avoid publishing .github folder into npm distribution.
