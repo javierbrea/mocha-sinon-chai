@@ -115,6 +115,15 @@ Proxies for "istanbul", "mocha" and "_mocha" original binaries are available too
 * Because I used to import all these dependencies in all my test files.
 * Because now, my tests are compliant with [standardjs][standardjs-url].
 
+## Contributing
+
+Contributions are welcome! Read the [contributing guide lines][contributing-url] and [code of conduct][code-of-conduct-url], check out the [issues][issues-url] or the [PRs][prs-url], and make your own if you want something that you don't see there.
+
+[prs-url]: https://github.com/javierbrea/mocha-sinon-chai/pulls
+[contributing-url]: https://github.com/javierbrea/mocha-sinon-chai/blob/master/.github/CONTRIBUTING.md
+[code-of-conduct-url]: https://github.com/javierbrea/mocha-sinon-chai/blob/master/.github/CODE_OF_CONDUCT.md
+[issues-url]: https://github.com/javierbrea/mocha-sinon-chai/issues
+
 [istanbul-url]: https://istanbul.js.org/
 [mocha-url]: https://mochajs.org
 [sinon-url]: http://sinonjs.org/
