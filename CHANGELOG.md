@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 ### Removed
 
+## [2.8.0] - 2018-08-11
+### Added
+- Avoid publishing .github folder into npm distribution.
+
 ## [2.7.0] - 2018-08-11
 ### Changed
 - Upgrade sinon version to 6.1.5.
