@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 ### Removed
 
+## [2.7.0] - 2018-08-11
+### Changed
+- Upgrade sinon version to 6.1.5.
+
 ## [2.6.0] - 2018-06-18
 ### Changed
 - Upgrade sinon-chai version to version 3.2.0, which provides support for Sinon v6.x.

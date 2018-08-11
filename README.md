@@ -55,7 +55,7 @@ Add the next script to your `package.json` file:
     "test": "mocha-sinon-chai"
   },
   "devDependencies" : {
-    "mocha-sinon-chai": "2.3.0"
+    "mocha-sinon-chai": "2.7.0"
   }
 }
 ```

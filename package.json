@@ -1,6 +1,6 @@
 {
   "name": "mocha-sinon-chai",
-  "version": "2.6.0",
+  "version": "2.7.0",
   "description": "Wrapper for Mocha, Sinon and Chai. Wrapper cli for istanbul and mocha. Avoid globals in tests",
   "main": "index.js",
   "keywords": [
@@ -29,12 +29,12 @@
     "chai": "4.1.2",
     "dirty-chai": "2.0.1",
     "mocha": "5.2.0",
-    "sinon": "6.0.0",
+    "sinon": "6.1.5",
     "sinon-chai": "3.2.0",
     "istanbul": "0.4.5"
   },
   "devDependencies": {
-    "coveralls": "3.0.1",
+    "coveralls": "3.0.2",
     "standard": "11.0.1"
   },
   "author": {
