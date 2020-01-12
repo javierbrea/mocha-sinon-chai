@@ -1,5 +1,7 @@
 # Mocha-Sinon-Chai
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/javierbrea/mocha-sinon-chai.svg)](https://greenkeeper.io/)
+
 Wrapper for [Mocha][mocha-url], [Sinon][sinon-url], [Chai][chai-url], [sinon-chai][sinon-chai-url] and [dirty-chai][dirty-chai-url]
 
 It also includes [Istanbul][istanbul-url] as a dependency, and provides "proxy" `bin` files that allow to launch tests and generate coverages.
