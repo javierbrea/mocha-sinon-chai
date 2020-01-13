@@ -140,8 +140,8 @@ Contributions are welcome! Read the [contributing guide lines][contributing-url]
 [npm-downloads-url]: https://www.npmjs.com/package/mocha-sinon-chai
 [npm-dependencies-image]: https://img.shields.io/david/javierbrea/mocha-sinon-chai.svg
 [npm-dependencies-url]: https://david-dm.org/javierbrea/mocha-sinon-chai
-[travisci-image]: https://travis-ci.org/javierbrea/mocha-sinon-chai.svg?branch=master
-[travisci-url]: https://travis-ci.org/javierbrea/mocha-sinon-chai
+[travisci-image]: https://travis-ci.com/javierbrea/mocha-sinon-chai.svg
+[travisci-url]: https://travis-ci.com/javierbrea/mocha-sinon-chai
 [quality-gate-image]: https://sonarcloud.io/api/project_badges/measure?project=mocha-sinon-chai&metric=alert_status
 [quality-gate-url]: https://sonarcloud.io/dashboard?id=mocha-sinon-chai
 [standard-image]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg
