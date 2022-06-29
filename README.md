@@ -1,3 +1,7 @@
+# ⚠ Deprecation notice
+
+> This package is no longer maintained. Consider using a current testing framework alternative, such as [Jest](https://jestjs.io/es-ES/).
+
 # Mocha-Sinon-Chai
 
 Wrapper for [Mocha][mocha-url], [Sinon][sinon-url], [Chai][chai-url], [sinon-chai][sinon-chai-url] and [dirty-chai][dirty-chai-url]
